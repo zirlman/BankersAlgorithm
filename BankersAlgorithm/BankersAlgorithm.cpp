@@ -2,8 +2,10 @@
 #include <string>
 #include <iostream>
 
-BankersAlgorithm::BankersAlgorithm(int processes, int resources, char ** argv, int argc) : R(resources), P(processes)
+BankersAlgorithm::BankersAlgorithm(int processes, int resources, char ** argv, int argc) : R(resources), P(processes), safeSeqCount(0)
 {
+	if (argc < 19)
+		throw std::range_error("Potrebno je unijeti 8 resursa za alokaciju, 8 za potrebu i 2 resursa za slobodan vektor!\n");
 	allocationMatrix = new int*[processes]();
 	maxMatrix = new int*[processes]();
 	needMatrix = new int*[processes]();
@@ -51,6 +53,8 @@ BankersAlgorithm::BankersAlgorithm(int processes, int resources, char ** argv, i
 
 BankersAlgorithm::~BankersAlgorithm()
 {
+	if (safeSeqCount == 0)
+		std::cout << "Sistem nije u bezbijednom stanju" << std::endl;
 	for (int i = 0; i < P; ++i)
 	{
 		delete[] allocationMatrix[i];
@@ -89,6 +93,7 @@ void BankersAlgorithm::safeSequence()
 
 	if (safe.size() == P)
 	{
+		++safeSeqCount;
 		for (int i = 0; i < P; ++i)
 		{
 			std::cout << "P" << safe[i] + 1;

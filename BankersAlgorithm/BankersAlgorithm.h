@@ -16,4 +16,5 @@ private:
 	int P;
 	int R;
 	std::vector<int> safe;
+	int safeSeqCount;
 };
