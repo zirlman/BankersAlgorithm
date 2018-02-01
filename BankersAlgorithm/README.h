@@ -8,6 +8,8 @@
 	Program ispisuje jedan od mogućih redoslijeda izvršavanja procesa(ako on postoji) ili poruku o tome da se
 	sistem nalazi u zastoju.Ako postoji redoslijed izvršavanja procesa, onda je potrebno ispisati i stanja u
 	svakom koraku izvršavanja algoritma.
+	
+	------------------------------------------------------------
 
 	Algoritam rekurzivno prolazi kroz niz procesa, prvo znaci da je proces obradjen,oslobodi svoje resurse i stavi processId u
 	safe vektor. Nakon toga poziva se safeSequence() u kojoj se preskacu oznaceni procesi. Nakon sto se naidje na sigurnu sekvencu.
